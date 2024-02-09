@@ -1,0 +1,50 @@
+import os
+import discord
+from discord.ext import commands, tasks
+import asyncio
+import yt_dlp as youtube_dl
+import openai
+
+
+
+intents = discord.Intents.all()
+intents.members = True
+intents.voice_states = True
+
+bot = commands.Bot(command_prefix="m!", intents=intents)
+
+
+
+@bot.event
+async def on_ready():
+    print('----------------------')
+    print('----------------------')
+    print('-----hello,master-----')
+    print('______________________')
+    print('----------------------') 
+    print(bot.user.name)
+    print(bot.user.id) 
+    print(discord.__version__)
+    print('--------------')
+
+
+    await bot.change_presence(activity=discord.Activity(name=f"m!help | {len(bot.guilds)} server", type=discord.ActivityType.watching))
+
+
+#loading extensions
+async def load_extension():
+    for type in ['commands','events','slash']:
+        cogs = os.listdir(f'./cogs/{type}/')
+        for cog in cogs:
+# __pycache__やpythonスクリプトじゃないファイルサイズが0のファイルを除外
+            if cog[0:2] != '__' and cog[-3:] == '.py' and os.path.getsize(f'./cogs/{type}/{cog}') != 0:
+                cog = cog.replace('.py', '')
+                await bot.load_extension(f'cogs.{type}.{cog}')
+
+async def main():
+    await load_extension()
+    await bot.start('MTEzMDg2NzIxOTE5NTI0MDUzOA.Ge8Dem.MbsTBQEkhye0GOxCodSb0VC-7hvrKcWn6fZ19U')
+
+
+
+asyncio.run(main())
