@@ -1,7 +1,7 @@
 # config.py
 
 settings = {
-    'token': 'MTEzMDg2NzIxOTE5NTI0MDUzOA.Ge8Dem.MbsTBQEkhye0GOxCodSb0VC-7hvrKcWn6fZ19U',
+    'token': '',
     'prefix': 'm!',
     'path_to_ffmpeg': 'C:\FFmpeg\\bin\\ffmpeg.exe' , # または 'C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe' など
     'emojis': {
